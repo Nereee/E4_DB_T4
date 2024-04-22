@@ -14,6 +14,7 @@ create table Musikaria (
 IdArtista int primary key,
 Ezaugarria enum("bakarlaria","taldea") not null,	
 foreign key (IdArtista) references Artista(IdArtista)
+on delete cascade on update cascade
 );
 
 create table Podcaster(
@@ -45,7 +46,8 @@ create table Podcast(
 IdAudio int primary key,
 Kolaboratzaileak varchar(50),
 IdArtista int not null,
-foreign key (IdAudio) references Audio(IdAudio),
+foreign key (IdAudio) references Audio(IdAudio)
+on delete cascade on update cascade,
 foreign key (IdArtista) references Podcaster(IdArtista)
 on delete cascade on update cascade
 );
@@ -53,7 +55,8 @@ on delete cascade on update cascade
 create table Abestia(
 IdAudio int primary key,
 IdAlbum int,
-foreign key (IdAudio) references Audio(IdAudio),
+foreign key (IdAudio) references Audio(IdAudio)
+on delete cascade on update cascade,
 foreign key (IdAlbum) references Album(IdAlbum)
 on delete cascade on update cascade
 );
@@ -81,7 +84,7 @@ ErregistroData date, #default current_timestamp on update current_timestamp,
 Mota enum("premium","free") default "free",
 IdHizkuntza enum("ES","EU","EN","FR","DE","CA","GA","AR"),
 foreign key (IdHizkuntza) references Hizkuntza(IdHizkuntza)
-on delete cascade on update cascade
+ON DELETE set null
 );
 
 create table Erreprodukzioak(
@@ -91,7 +94,6 @@ ErreData date not null,
 primary key(IdBezeroa,IdAudio,ErreData),
 foreign key (IdAudio) references Audio(IdAudio),
 foreign key (IdBezeroa) references Bezeroa(IdBezeroa)
-on delete cascade on update cascade
 );
 
 
@@ -116,7 +118,8 @@ IdList int,
 IdAudio int,
 PData date,
 primary key (IdList,IdAudio),
-foreign key (IdAudio) references Audio(IdAudio),
+foreign key (IdAudio) references Audio(IdAudio)
+on delete cascade on update cascade,
 foreign key (IdList) references Playlist(IdList)
 on delete cascade on update cascade
 );
@@ -125,7 +128,8 @@ create table Gustokoak(
 IdBezeroa int,
 IdAudio int not null,
 primary key(IdBezeroa,IdAudio),
-foreign key (IdAudio) references Audio(IdAudio),
+foreign key (IdAudio) references Audio(IdAudio)
+on delete cascade on update cascade,
 foreign key (IdBezeroa) references Bezeroa(IdBezeroa)
 on delete cascade on update cascade
 );
