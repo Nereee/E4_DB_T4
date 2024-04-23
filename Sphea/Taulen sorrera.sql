@@ -64,6 +64,10 @@ on delete cascade on update cascade
 
 create table Estadistikak(
 IdAudio int primary key auto_increment,
+Egunero int,
+Astero int,
+Hilero int,
+Urtero int,
 foreign key (IdAudio) references Audio(IdAudio)
 on delete cascade on update cascade
 );

@@ -82,8 +82,8 @@ INSERT INTO Abestia (IdAudio, IdAlbum)
 VALUES (1, 1);
 
 /*------------Estadistikak-----------*/
-INSERT INTO Estadistikak (IdAudio)
-VALUES (1);
+INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero)
+VALUES (1, 0, 0, 0, 0);
 
 /*-----------Erreprodukzioak----------------*/
 INSERT INTO Erreprodukzioak (IdBezeroa, IdAudio, ErreData)
