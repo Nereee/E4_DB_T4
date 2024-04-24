@@ -130,26 +130,26 @@ INSERT INTO Abestia (IdAudio, IdAlbum)
 VALUES (8, 2);
 
 /*------------Estadistikak-----------*/
-INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero)
-VALUES (1, 0, 0, 0, 0);
-INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero)
-VALUES (2, 0, 0, 0, 0);
-INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero)
-VALUES (3, 0, 0, 0, 0);
-INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero)
-VALUES (4, 0, 0, 0, 0);
-INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero)
-VALUES (5, 0, 0, 0, 0);
-INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero)
-VALUES (6, 0, 0, 0, 0);
-INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero)
-VALUES (7, 0, 0, 0, 0);
-INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero)
-VALUES (8, 0, 0, 0, 0);
-INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero)
-VALUES (9, 0, 0, 0, 0);
-INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero)
-VALUES (10, 0, 0, 0, 0);
+INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero, Beti)
+VALUES (1, 1, 1, 1, 1, 1);
+INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero, Beti)
+VALUES (2, 2, 2, 2, 2, 2);
+INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero, Beti)
+VALUES (3, 3, 3, 3, 3, 3);
+INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero, Beti)
+VALUES (4, 4, 4, 4, 4, 4);
+INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero, Beti)
+VALUES (5, 5, 5, 5, 5, 5);
+INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero, Beti)
+VALUES (6, 6, 6, 6, 6, 6);
+INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero, Beti)
+VALUES (7, 7, 7, 7, 7, 7);
+INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero, Beti)
+VALUES (8, 8, 8, 8, 8, 8);
+INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero, Beti)
+VALUES (9, 9, 9, 9, 9, 9);
+INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero, Beti)
+VALUES (10, 10, 10, 10, 10, 10);
 
 /*-----------Erreprodukzioak----------------*/
 INSERT INTO Erreprodukzioak (IdBezeroa, IdAudio, ErreData)

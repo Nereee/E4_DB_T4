@@ -68,6 +68,7 @@ Egunero int,
 Astero int,
 Hilero int,
 Urtero int,
+Beti int,
 foreign key (IdAudio) references Audio(IdAudio)
 on delete cascade on update cascade
 );
