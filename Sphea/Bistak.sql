@@ -56,7 +56,3 @@ select ar.IzenArtistikoa, au.Izena, er.Urtero from Estadistikak er INNER JOIN Au
 INNER JOIN Podcast pod on au.IdAudio = pod.IdAudio
 INNER JOIN Podcaster po on pod.IdArtista = po.IdArtista
 INNER JOIN Artista ar on po.IdArtista = ar.IdArtista; 
-
-create view EstatistikakAurkestuAstero as select IdAudio, Astero from Estadistikak;
-create view EstatistikakAurkestuHilero as select IdAudio, Hilero from Estadistikak;
-create view EstatistikakAurkestuUrtero as select IdAudio, Urtero from Estadistikak;

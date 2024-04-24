@@ -7,7 +7,7 @@ create table Artista(
 IdArtista int primary key auto_increment,
 IzenArtistikoa varchar(30) not null unique,
 Irudia blob,
-Deskripzioa varchar(100)
+Deskripzioa varchar(500)
 );
 
 create table Musikaria (
@@ -28,7 +28,7 @@ IdAlbum int primary key auto_increment,
 Izenburua varchar(50) unique not null,
 Urtea date not null,
 Generoa varchar(20) not null,
-Irudia blob not null,
+Irudia longblob not null,
 IdArtista int not null,
 foreign key (IdArtista) references Musikaria(IdArtista)
 on delete cascade on update cascade
