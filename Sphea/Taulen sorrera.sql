@@ -38,7 +38,7 @@ create table Audio(
 IdAudio int primary key auto_increment,
 Izena varchar(20) not null,
 Iraupena time not null,
-Irudia blob not null,
+Irudia longblob not null,
 Mota enum("abestia","podcast") not null
 );
 
