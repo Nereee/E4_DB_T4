@@ -6,7 +6,7 @@ use Sphea;
 create table Artista(
 IdArtista int primary key auto_increment,
 IzenArtistikoa varchar(30) not null unique,
-Irudia blob,
+Irudia longblob,
 Deskripzioa varchar(500)
 );
 
@@ -28,7 +28,7 @@ IdAlbum int primary key auto_increment,
 Izenburua varchar(50) unique not null,
 Urtea date not null,
 Generoa varchar(20) not null,
-Irudia longblob not null,
+Irudia longblob /*not null*/,
 IdArtista int not null,
 foreign key (IdArtista) references Musikaria(IdArtista)
 on delete cascade on update cascade
@@ -36,9 +36,9 @@ on delete cascade on update cascade
 
 create table Audio(
 IdAudio int primary key auto_increment,
-Izena varchar(20) not null,
+Izena varchar(50) not null,
 Iraupena time not null,
-Irudia longblob not null,
+Irudia longblob /*not null*/,
 Mota enum("abestia","podcast") not null
 );
 
