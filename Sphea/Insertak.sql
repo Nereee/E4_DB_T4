@@ -240,7 +240,12 @@ INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero, Beti)
 VALUES (15, 15, 15, 15, 15, 15);
 INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero, Beti)
 VALUES (16, 16, 16, 16, 16, 16);
-
+INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero, Beti)
+VALUES (17, 17, 17, 17, 17, 17);
+INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero, Beti)
+VALUES (18, 18, 18, 18, 18, 18);
+INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero, Beti)
+VALUES (19, 19, 19, 19, 19, 19);
 /*-----------Erreprodukzioak----------------*/
 INSERT INTO Erreprodukzioak (IdBezeroa, IdAudio, ErreData)
 VALUES (2, 1, now());
