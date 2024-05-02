@@ -113,7 +113,7 @@ on delete cascade on update cascade
 
 create table Playlist(
 IdList int primary key auto_increment,
-Izenburua varchar(20) not null,
+Izenburua varchar(200) not null,
 SorreraData date not null,
 IdBezeroa int not null,
 foreign key (IdBezeroa) references Bezeroa(IdBezeroa)
@@ -124,7 +124,7 @@ create table PlaylistAbestiak(
 IdList int,
 IdAudio int,
 PData date,
-primary key (IdList,IdAudio),
+primary key (IdList,IdAudio, PData),
 foreign key (IdAudio) references Audio(IdAudio)
 on delete cascade on update cascade,
 foreign key (IdList) references Playlist(IdList)
