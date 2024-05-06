@@ -40,6 +40,9 @@ grant langileaRol to  "langilea"@"%";
 #DepartBuruRol
 create role if not exists DepartBuruRol;
 grant select on Sphea.Estadistikak to DepartBuruRol;
+grant select on Sphea.Bezeroa to DepartBuruRol;
+grant select on Sphea.Premium to DepartBuruRol;
+grant update on Sphea.Bezeroa to DepartBuruRol;
 grant update on Sphea.Premium to DepartBuruRol;
 
 
