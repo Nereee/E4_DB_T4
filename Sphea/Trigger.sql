@@ -7,10 +7,12 @@ FOR EACH ROW
     set new.ErregistroData = CURDATE();
 //
 
-DELIMITER //
 
-DROP TRIGGER IF EXISTS EstadistikaTotalaBete //
-CREATE TRIGGER EstadistikaTotalaBete
+
+    DELIMITER //
+
+DROP TRIGGER IF EXISTS EstadistikaTotalaBeteInsert //
+CREATE TRIGGER EstadistikaTotalaBeteInsert
 BEFORE INSERT ON EstadistikakEgunean
 FOR EACH ROW
 BEGIN
@@ -22,8 +24,8 @@ END;
 
 DELIMITER //
 
-DROP TRIGGER IF EXISTS EstadistikaTotalaBete //
-CREATE TRIGGER EstadistikaTotalaBete
+DROP TRIGGER IF EXISTS EstadistikaTotalaBeteUpdate //
+CREATE TRIGGER EstadistikaTotalaBeteUpdate
 BEFORE UPDATE ON EstadistikakEgunean
 FOR EACH ROW
 BEGIN
@@ -32,3 +34,5 @@ BEGIN
     WHERE IdAudio = NEW.IdAudio; 
 END;
 //
+
+
