@@ -62,16 +62,37 @@ on delete cascade on update cascade
 );
 
 
-create table Estadistikak(
+create table EstadistikakEgunean(
 IdAudio int primary key auto_increment,
-Egunero int,
-Astero int,
-Hilero int,
-Urtero int,
-Beti int,
+Eguna date,
+Entzunaldiak int,
 foreign key (IdAudio) references Audio(IdAudio)
 on delete cascade on update cascade
 );
+
+create table EstadistikakHilean(
+IdAudio int primary key auto_increment,
+Hilea date,
+Entzunaldiak int,
+foreign key (IdAudio) references Audio(IdAudio)
+on delete cascade on update cascade
+);
+
+create table EstadistikakUrtean(
+IdAudio int primary key auto_increment,
+Urtea year,
+Entzunaldiak int,
+foreign key (IdAudio) references Audio(IdAudio)
+on delete cascade on update cascade
+);
+
+create table EstadistikaTotala(
+IdAudio int primary key auto_increment,
+Entzunaldiak int,
+foreign key (IdAudio) references Audio(IdAudio)
+on delete cascade on update cascade
+);
+
 
 create table Hizkuntza(
 IdHizkuntza enum("ES","EU","EN","FR","DE","CA","GA","AR") primary key,
