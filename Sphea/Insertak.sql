@@ -205,47 +205,29 @@ VALUES (18, 7);
 INSERT INTO Abestia (IdAudio, IdAlbum)
 VALUES (19, 7);
 
+/*-----------EstadistikaTotalak--------------*/
+
+Insert into EstadistikaTotala values(1,0);
+Insert into EstadistikaTotala values(2,0);
+Insert into EstadistikaTotala values(3,0);
+Insert into EstadistikaTotala values(4,0);
+Insert into EstadistikaTotala values(5,0);
+Insert into EstadistikaTotala values(6,0);
+Insert into EstadistikaTotala values(7,0);
+Insert into EstadistikaTotala values(8,0);
+Insert into EstadistikaTotala values(9,0);
+Insert into EstadistikaTotala values(10,0);
+Insert into EstadistikaTotala values(11,0);
+Insert into EstadistikaTotala values(12,0);
+Insert into EstadistikaTotala values(13,0);
+Insert into EstadistikaTotala values(14,0);
+Insert into EstadistikaTotala values(15,0);
+Insert into EstadistikaTotala values(16,0);
+Insert into EstadistikaTotala values(17,0);
+Insert into EstadistikaTotala values(18,0);
+Insert into EstadistikaTotala values(19,0);
 
 
-/*------------Estadistikak-----------*/
-INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero, Beti)
-VALUES (1, 1, 1, 1, 1, 1);
-INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero, Beti)
-VALUES (2, 2, 2, 2, 2, 2);
-INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero, Beti)
-VALUES (3, 3, 3, 3, 3, 3);
-INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero, Beti)
-VALUES (4, 4, 4, 4, 4, 4);
-INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero, Beti)
-VALUES (5, 5, 5, 5, 5, 5);
-INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero, Beti)
-VALUES (6, 6, 6, 6, 6, 6);
-INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero, Beti)
-VALUES (7, 7, 7, 7, 7, 7);
-INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero, Beti)
-VALUES (8, 8, 8, 8, 8, 8);
-INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero, Beti)
-VALUES (9, 9, 9, 9, 9, 9);
-INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero, Beti)
-VALUES (10, 10, 10, 10, 10, 10);
-INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero, Beti)
-VALUES (11, 11, 11, 11, 11, 11);
-INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero, Beti)
-VALUES (12, 12, 12, 12, 12, 12);
-INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero, Beti)
-VALUES (13, 13, 13, 13, 13, 13);
-INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero, Beti)
-VALUES (14, 14, 14, 14, 14, 14);
-INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero, Beti)
-VALUES (15, 15, 15, 15, 15, 15);
-INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero, Beti)
-VALUES (16, 16, 16, 16, 16, 16);
-INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero, Beti)
-VALUES (17, 17, 17, 17, 17, 17);
-INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero, Beti)
-VALUES (18, 18, 18, 18, 18, 18);
-INSERT INTO Estadistikak (IdAudio, Egunero, Astero, hilero, urtero, Beti)
-VALUES (19, 19, 19, 19, 19, 19);
 /*-----------Erreprodukzioak----------------*/
 INSERT INTO Erreprodukzioak (IdBezeroa, IdAudio, ErreData)
 VALUES (2, 1, now());
