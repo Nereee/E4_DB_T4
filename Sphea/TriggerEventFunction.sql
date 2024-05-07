@@ -49,6 +49,8 @@ BEGIN
 END;
 //
 
+DELIMITER //
+DROP FUNCTION IF EXISTS BadagoGaurIdAudio;
 CREATE FUNCTION BadagoGaurIdAudio(IdAudioa int)
 RETURNS BOOLEAN 
 READS sql data
@@ -65,6 +67,7 @@ BEGIN
         RETURN FALSE;
     END IF;
 END;
+//
 
 DELIMITER //
 DROP TRIGGER IF EXISTS EstadistikakEguneanBete_Insert// 
@@ -77,7 +80,7 @@ BEGIN
     SET Entzunaldiak =  Entzunaldiak + 1
     WHERE IdAudio = NEW.IdAudio and DAY(Eguna) = DAY(NEW.ErreData);
     ELSE
-    INSERT INTO ErregistroakEgunean VALUES(NEW.IdAudio,now(),1);
+    INSERT INTO EstadistikakEgunean VALUES(NEW.IdAudio,now(),1);
     END IF;
 END;
 //
@@ -93,7 +96,7 @@ BEGIN
     DECLARE entzun int;
     DECLARE amaitu boolean default 0;
     
-    DECLARE estadistikaZerrenda cursor for 
+    DECLARE estadistikaZerrendaHilean cursor for 
     SELECT  IdAudio,sum(Entzunaldiak)
     FROM EstadistikakEgunean
     WHERE month(Eguna) = month(now() - INTERVAL 1 MONTH) 
@@ -101,16 +104,16 @@ BEGIN
     DECLARE CONTINUE HANDLER FOR NOT FOUND
     SET amaitu = 1;
     
-	open estadistikaZerrenda;
+	open estadistikaZerrendaHilean;
 	
-    fetch estadistikaZerrenda into id,entzun;
+    fetch estadistikaZerrendaHilean into id,entzun;
     
     while amaitu = 0 do
     INSERT INTO EstadistikakHilean VALUES(id, current_date() - INTERVAL 1 MONTH,entzun);
-    fetch estadistikaZerrenda into id,entzun;
+    fetch estadistikaZerrendaHilean into id,entzun;
     end while;
 	
-    close estadistikaZerrenda;
+    close estadistikaZerrendaHilean;
     
 END; 
 //
@@ -130,7 +133,7 @@ BEGIN
     DECLARE estadistikaZerrenda cursor for 
     SELECT  IdAudio,sum(Entzunaldiak)
     FROM EstadistikakHilean
-    WHERE month(Hilea) = month(now()) 
+    WHERE year(Hilea) = year(now()- Interval 1 year) 
     GROUP BY IdAudio;
     DECLARE CONTINUE HANDLER FOR NOT FOUND
     SET amaitu = 1;
@@ -148,6 +151,7 @@ BEGIN
     
 END; 
 //
+
 
 
 
