@@ -114,7 +114,7 @@ ON DELETE set null
 );
 
 create table Erreprodukzioak(
-IdErre int,
+IdErre int auto_increment,
 IdBezeroa int,
 IdAudio int not null,
 ErreData date not null,
