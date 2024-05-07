@@ -115,10 +115,10 @@ ON DELETE set null
 
 create table Erreprodukzioak(
 IdErre int auto_increment,
-IdBezeroa int,
+IdBezeroa int not null,
 IdAudio int not null,
 ErreData date not null,
-primary key(IdBezeroa,IdAudio,ErreData,IdErre),
+primary key(IdErre, IdBezeroa,IdAudio,ErreData),
 foreign key (IdAudio) references Audio(IdAudio)
 on delete cascade on update cascade,
 foreign key (IdBezeroa) references Bezeroa(IdBezeroa)

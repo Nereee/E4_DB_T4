@@ -229,7 +229,7 @@ Insert into EstadistikaTotala values(19,0);
 
 
 /*-----------Erreprodukzioak----------------*/
-INSERT INTO Erreprodukzioak (IdBezeroa, IdAudio, ErreData)
+/*INSERT INTO Erreprodukzioak (IdBezeroa, IdAudio, ErreData)
 VALUES (2, 1, now());
 
 INSERT INTO Erreprodukzioak (IdBezeroa, IdAudio, ErreData)
@@ -239,7 +239,7 @@ INSERT INTO Erreprodukzioak (IdBezeroa, IdAudio, ErreData)
 VALUES (3, 1, now());
 
 INSERT INTO Erreprodukzioak (IdBezeroa, IdAudio, ErreData)
-VALUES (4, 1, now());
+VALUES (4, 1, now());*/
 
 /*----------Playlist------------*/
 INSERT INTO Playlist (Izenburua, SorreraData, IdBezeroa)
