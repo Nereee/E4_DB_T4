@@ -114,10 +114,11 @@ ON DELETE set null
 );
 
 create table Erreprodukzioak(
+IdErre int,
 IdBezeroa int,
 IdAudio int not null,
 ErreData date not null,
-primary key(IdBezeroa,IdAudio,ErreData),
+primary key(IdBezeroa,IdAudio,ErreData,IdErre),
 foreign key (IdAudio) references Audio(IdAudio)
 on delete cascade on update cascade,
 foreign key (IdBezeroa) references Bezeroa(IdBezeroa)
