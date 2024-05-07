@@ -6,8 +6,8 @@ use Sphea;
 create table Artista(
 IdArtista int primary key auto_increment,
 IzenArtistikoa varchar(30) not null unique,
-Irudia blob,
-Deskripzioa varchar(100)
+Irudia longblob,
+Deskripzioa varchar(500)
 );
 
 create table Musikaria (
@@ -28,7 +28,7 @@ IdAlbum int primary key auto_increment,
 Izenburua varchar(50) unique not null,
 Urtea date not null,
 Generoa varchar(20) not null,
-Irudia blob not null,
+Irudia longblob /*not null*/,
 IdArtista int not null,
 foreign key (IdArtista) references Musikaria(IdArtista)
 on delete cascade on update cascade
@@ -36,9 +36,9 @@ on delete cascade on update cascade
 
 create table Audio(
 IdAudio int primary key auto_increment,
-Izena varchar(20) not null,
+Izena varchar(50) not null,
 Iraupena time not null,
-Irudia blob not null,
+Irudia longblob /*not null*/,
 Mota enum("abestia","podcast") not null
 );
 
@@ -62,11 +62,37 @@ on delete cascade on update cascade
 );
 
 
-create table Estadistikak(
+create table EstadistikakEgunean(
 IdAudio int primary key auto_increment,
+Eguna date,
+Entzunaldiak int,
 foreign key (IdAudio) references Audio(IdAudio)
 on delete cascade on update cascade
 );
+
+create table EstadistikakHilean(
+IdAudio int primary key auto_increment,
+Hilea date,
+Entzunaldiak int,
+foreign key (IdAudio) references Audio(IdAudio)
+on delete cascade on update cascade
+);
+
+create table EstadistikakUrtean(
+IdAudio int primary key auto_increment,
+Urtea year,
+Entzunaldiak int,
+foreign key (IdAudio) references Audio(IdAudio)
+on delete cascade on update cascade
+);
+
+create table EstadistikaTotala(
+IdAudio int primary key auto_increment,
+Entzunaldiak int,
+foreign key (IdAudio) references Audio(IdAudio)
+on delete cascade on update cascade
+);
+
 
 create table Hizkuntza(
 IdHizkuntza enum("ES","EU","EN","FR","DE","CA","GA","AR") primary key,
@@ -88,10 +114,11 @@ ON DELETE set null
 );
 
 create table Erreprodukzioak(
-IdBezeroa int,
+IdErre int auto_increment,
+IdBezeroa int not null,
 IdAudio int not null,
 ErreData date not null,
-primary key(IdBezeroa,IdAudio,ErreData),
+primary key(IdErre, IdBezeroa,IdAudio,ErreData),
 foreign key (IdAudio) references Audio(IdAudio)
 on delete cascade on update cascade,
 foreign key (IdBezeroa) references Bezeroa(IdBezeroa)
@@ -108,7 +135,7 @@ on delete cascade on update cascade
 
 create table Playlist(
 IdList int primary key auto_increment,
-Izenburua varchar(20) not null,
+Izenburua varchar(200) not null,
 SorreraData date not null,
 IdBezeroa int not null,
 foreign key (IdBezeroa) references Bezeroa(IdBezeroa)
@@ -119,7 +146,7 @@ create table PlaylistAbestiak(
 IdList int,
 IdAudio int,
 PData date,
-primary key (IdList,IdAudio),
+primary key (IdList,IdAudio, PData),
 foreign key (IdAudio) references Audio(IdAudio)
 on delete cascade on update cascade,
 foreign key (IdList) references Playlist(IdList)
