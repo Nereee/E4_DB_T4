@@ -63,25 +63,28 @@ on delete cascade on update cascade
 
 
 create table EstadistikakEgunean(
-IdAudio int primary key auto_increment,
+IdAudio int,
 Eguna date,
 Entzunaldiak int,
+primary key (IdAudio, Eguna),
 foreign key (IdAudio) references Audio(IdAudio)
 on delete cascade on update cascade
 );
 
 create table EstadistikakHilean(
-IdAudio int primary key auto_increment,
+IdAudio int,
 Hilea date,
 Entzunaldiak int,
+primary key (IdAudio, Hilea),
 foreign key (IdAudio) references Audio(IdAudio)
 on delete cascade on update cascade
 );
 
 create table EstadistikakUrtean(
-IdAudio int primary key auto_increment,
+IdAudio int,
 Urtea year,
 Entzunaldiak int,
+primary key (IdAudio, Urtea),
 foreign key (IdAudio) references Audio(IdAudio)
 on delete cascade on update cascade
 );

@@ -227,20 +227,6 @@ Insert into EstadistikaTotala values(17,0);
 Insert into EstadistikaTotala values(18,0);
 Insert into EstadistikaTotala values(19,0);
 
-
-/*-----------Erreprodukzioak----------------*/
-/*INSERT INTO Erreprodukzioak (IdBezeroa, IdAudio, ErreData)
-VALUES (2, 1, now());
-
-INSERT INTO Erreprodukzioak (IdBezeroa, IdAudio, ErreData)
-VALUES (1, 1, now());
-
-INSERT INTO Erreprodukzioak (IdBezeroa, IdAudio, ErreData)
-VALUES (3, 1, now());
-
-INSERT INTO Erreprodukzioak (IdBezeroa, IdAudio, ErreData)
-VALUES (4, 1, now());*/
-
 /*----------Playlist------------*/
 INSERT INTO Playlist (Izenburua, SorreraData, IdBezeroa)
 VALUES ('Lo egiteko', now(), 1);

@@ -55,13 +55,12 @@ CREATE FUNCTION BadagoGaurIdAudio(IdAudioa int)
 RETURNS BOOLEAN 
 READS sql data
 BEGIN
-	
     DECLARE rowExist int;
     
     SELECT IdAudio into rowExist FROM EstadistikakEgunean
-    WHERE IdAudio = IdAudioa and Eguna = now();
+    WHERE IdAudio = IdAudioa and Eguna = current_date();
 
-    IF (rowExist != null) THEN
+    IF (rowExist = IdAudioa) THEN
         RETURN TRUE;
     ELSE
         RETURN FALSE;
