@@ -245,16 +245,11 @@ INSERT INTO PlaylistAbestiak (IdList, IdAudio, PData)
 VALUES (3, 1, now());
 
 /*---------Gustokoak-----------*/
-INSERT INTO Gustokoak (IdBezeroa, IdAudio)
-values(4,1);
+
 
 INSERT INTO Gustokoak (IdBezeroa, IdAudio)
-values(4,6);
+values(1,6);
 
-INSERT INTO Gustokoak (IdBezeroa, IdAudio)
-values(4,7);
 
-INSERT INTO Gustokoak (IdBezeroa, IdAudio)
-values(4,15)
 
 
