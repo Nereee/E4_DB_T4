@@ -248,7 +248,7 @@ VALUES (3, 1, now());
 
 
 INSERT INTO Gustokoak (IdBezeroa, IdAudio)
-values(1,6);
+values(1,1);
 
 
 
