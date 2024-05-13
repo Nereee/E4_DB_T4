@@ -1,5 +1,13 @@
 use Sphea;
 
+drop view if exists EstadistikaAbestiaEgunean;
+create view EstadistikaAbestiaEgunean as
+select Artista.IzenArtistikoa as Musikaria, Audio.Izena as Abestia, sum(Entzunaldiak) as Entzunaldiak, Eguna
+from Artista join Album using(IdArtista) 
+join Abestia using(IdAlbum)
+join EstadistikakEgunean using (IdAudio)
+join Audio using(IdAudio)
+group by Artista.IzenArtistikoa, Audio.Izena, Eguna;
 
 drop view if exists EstatistikakAurkestuMusikariaTotala;
 create view EstatistikakAurkestuMusikariaTotala as
