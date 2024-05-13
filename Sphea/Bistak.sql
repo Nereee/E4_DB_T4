@@ -2,12 +2,36 @@ use Sphea;
 
 drop view if exists EstadistikaAbestiaEgunean;
 create view EstadistikaAbestiaEgunean as
-select Artista.IzenArtistikoa as Musikaria, Audio.Izena as Abestia, sum(Entzunaldiak) as Entzunaldiak, Eguna
+select Artista.IzenArtistikoa as Musikaria, Audio.Izena as Abestia, sum(Entzunaldiak) as Entzunaldiak, Eguna as Eguna
 from Artista join Album using(IdArtista) 
 join Abestia using(IdAlbum)
 join EstadistikakEgunean using (IdAudio)
 join Audio using(IdAudio)
-group by Artista.IzenArtistikoa, Audio.Izena, Eguna;
+where day(Eguna) = day(now())
+group by Artista.IzenArtistikoa, Audio.Izena, Eguna
+order by Entzunaldiak Desc;
+
+drop view if exists EstadistikaAbestiaHilean;
+create view EstadistikaAbestiaHilean as
+select Artista.IzenArtistikoa as Musikaria, Audio.Izena as Abestia, sum(Entzunaldiak) as Entzunaldiak, Hilea
+from Artista join Album using(IdArtista) 
+join Abestia using(IdAlbum) 
+join EstadistikakHilean using (IdAudio) 
+join Audio using(IdAudio)
+where month(Hilea) = month(now())
+group by Artista.IzenArtistikoa, Audio.Izena, Hilea 
+order by Entzunaldiak Desc;
+
+drop view if exists EstadistikaAbestiaUrtean;
+create view EstadistikaAbestiaUrtean as
+select Artista.IzenArtistikoa as Musikaria, Audio.Izena as Abestia, sum(Entzunaldiak) as Entzunaldiak, Urtea
+from Artista join Album using(IdArtista) 
+join Abestia using(IdAlbum) 
+join EstadistikakHilean using (IdAudio) 
+join Audio using(IdAudio)
+where year(Urtea) = year(now())
+group by Artista.IzenArtistikoa, Audio.Izena, Urtea 
+order by Entzunaldiak Desc;
 
 drop view if exists EstatistikakAurkestuMusikariaTotala;
 create view EstatistikakAurkestuMusikariaTotala as
