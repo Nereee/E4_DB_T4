@@ -34,8 +34,9 @@ BEGIN
 END;
 //
 
-drop procedure if exists InsertatuMusikaria;
+
 DELIMITER //
+drop procedure if exists InsertatuMusikaria //
 CREATE PROCEDURE InsertatuMusikaria(izena varchar(30),irudia text,deskripzioa varchar(100),ezaugarria varchar(20)) 
 BEGIN
 	declare lastId varchar(30);
@@ -127,12 +128,11 @@ BEGIN
     
 END; 
 //
-	
 
 delimiter //
 DROP EVENT if exists EstadistikaUrtean;
 CREATE EVENT EstadistikaUrtean
-ON SCHEDULE EVERY 1 YEAR
+ON SCHEDULE EVERY 1 Year
 STARTS '2025-01-01 00:00:00'
 DO
 BEGIN
@@ -143,7 +143,7 @@ BEGIN
     DECLARE estadistikaZerrenda cursor for 
     SELECT  IdAudio,sum(Entzunaldiak)
     FROM EstadistikakHilean
-    WHERE year(Hilea) = year(now()- Interval 1 year) 
+    WHERE year(Hilea) = year(now() - Interval 1 year) 
     GROUP BY IdAudio;
     DECLARE CONTINUE HANDLER FOR NOT FOUND
     SET amaitu = 1;
