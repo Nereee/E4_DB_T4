@@ -41,7 +41,8 @@ join  Podcast using (IdArtista)
 join Audio using (IdAudio)
 join EstadistikakEgunean using(IdAudio)
 where day(Eguna) = day(now())
-group by Podcasterra, Izena, EstadistikakEgunean.Entzunaldiak;
+group by Podcasterra, Izena, EstadistikakEgunean.Entzunaldiak
+order by EstadistikakEgunean.Entzunaldiak Desc;
 
 drop view if exists EstadistikaPodcastHilean;
 create view EstadistikaPodcastHilean as
@@ -51,7 +52,8 @@ join  Podcast using (IdArtista)
 join Audio using (IdAudio)
 join EstadistikakHilean using(IdAudio)
 where month(Hilea) = month(now())
-group by Podcasterra, Izena, EstadistikakHilean.Entzunaldiak;
+group by Podcasterra, Izena, EstadistikakHilean.Entzunaldiak
+order by EstadistikakHilean.Entzunaldiak Desc;
 
 drop view if exists EstadistikaPodcastUrtean;
 create view EstadistikaPodcastUrtean as
@@ -61,8 +63,35 @@ join  Podcast using (IdArtista)
 join Audio using (IdAudio)
 join EstadistikakUrtean using(IdAudio)
 where year(Urtea) = year(now())
-group by Podcasterra, Izena, EstadistikakUrtean.Entzunaldiak;
+group by Podcasterra, Izena, EstadistikakUrtean.Entzunaldiak
+order by EstadistikakUrtean.Entzunaldiak Desc;
 
+drop view if exists EntzundaEgunean;
+create view EntzundaEgunean as
+select Audio.Izena as Izena, sum(Entzunaldiak) as Entzunaldiak
+from EstadistikakEgunean
+join Audio using(IdAudio)
+where day(Eguna) = day(now())
+group by Audio.Izena
+order by Entzunaldiak Desc;
+
+drop view if exists EntzundaHilean;
+create view EntzundaHilean as
+select Audio.Izena as Izena, sum(Entzunaldiak) as Entzunaldiak
+from EstadistikakHilean
+join Audio using(IdAudio)
+where month(Hilea) = month(now())
+group by Audio.Izena
+order by Entzunaldiak Desc;
+
+drop view if exists EntzundaUrtean;
+create view EntzundaUrtean as
+select Audio.Izena as Izena, sum(Entzunaldiak) as Entzunaldiak
+from EstadistikakUrtean
+join Audio using(IdAudio)
+where year(Urtea) = year(now())
+group by Audio.Izena
+order by Entzunaldiak Desc;
 
 drop view if exists EstatistikakAurkestuMusikariaTotala;
 create view EstatistikakAurkestuMusikariaTotala as

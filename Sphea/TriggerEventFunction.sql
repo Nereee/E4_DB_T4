@@ -87,7 +87,7 @@ END;
 delimiter //
 DROP EVENT if exists EstadistikaHilean;
 CREATE EVENT EstadistikaHilean
-ON SCHEDULE EVERY 1 MONTH
+ON SCHEDULE EVERY 1 Month
 STARTS '2024-06-01 00:00:00'
 DO
 BEGIN
