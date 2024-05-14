@@ -7,8 +7,8 @@ from Artista join Album using(IdArtista)
 join Abestia using(IdAlbum)
 join EstadistikakEgunean using (IdAudio)
 join Audio using(IdAudio)
-where day(Eguna) = day(now()) and Audio.Mota = "abestia"
-group by Artista.IzenArtistikoa, Audio.Izena, Eguna
+where day(Eguna) = day(now())
+group by Artista.IzenArtistikoa, Audio.Izena, Eguna, Mota
 order by Entzunaldiak Desc;
 
 drop view if exists EstadistikaAbestiaHilean;
@@ -18,53 +18,50 @@ from Artista join Album using(IdArtista)
 join Abestia using(IdAlbum) 
 join EstadistikakHilean using (IdAudio) 
 join Audio using(IdAudio)
-where month(Hilea) = month(now()) and Audio.Mota = "abestia"
+where month(Hilea) = month(now())
 group by Artista.IzenArtistikoa, Audio.Izena, Hilea 
 order by Entzunaldiak Desc;
 
 drop view if exists EstadistikaAbestiaUrtean;
 create view EstadistikaAbestiaUrtean as
-select Artista.IzenArtistikoa as Musikaria, Audio.Izena as Abestia, sum(Entzunaldiak) as Entzunaldiak, Urtea
+select Artista.IzenArtistikoa as Musikaria, Audio.Izena as Abestia, sum(Entzunaldiak) as Entzunaldiak, EstadistikakUrtean.Urtea
 from Artista join Album using(IdArtista) 
 join Abestia using(IdAlbum) 
-join EstadistikakHilean using (IdAudio) 
+join EstadistikakUrtean using (IdAudio) 
 join Audio using(IdAudio)
-where year(Urtea) = year(now()) and Audio.Mota = "abestia"
-group by Artista.IzenArtistikoa, Audio.Izena, Urtea 
+where year(EstadistikakUrtean.Urtea) = year(now())
+group by Artista.IzenArtistikoa, Audio.Izena, EstadistikakUrtean.Urtea 
 order by Entzunaldiak Desc;
 
 drop view if exists EstadistikaPodcastEgunean;
 create view EstadistikaPodcastEgunean as
-select Artista.IzenArtistikoa as Musikaria, Audio.Izena as Abestia, sum(Entzunaldiak) as Entzunaldiak, Eguna as Eguna
-from Artista join Album using(IdArtista) 
-join Abestia using(IdAlbum)
-join EstadistikakEgunean using (IdAudio)
-join Audio using(IdAudio)
-where day(Eguna) = day(now()) and Audio.Mota = "podcast"
-group by Artista.IzenArtistikoa, Audio.Izena, Eguna
-order by Entzunaldiak Desc;
+select Artista.IzenArtistikoa as Podcasterra, Audio.Izena as Izena, sum(Entzunaldiak) as Entzunaldiak
+from Artista join Podcaster using (IdArtista)
+join  Podcast using (IdArtista)
+join Audio using (IdAudio)
+join EstadistikakEgunean using(IdAudio)
+where day(Eguna) = day(now())
+group by Podcasterra, Izena, EstadistikakEgunean.Entzunaldiak;
 
 drop view if exists EstadistikaPodcastHilean;
 create view EstadistikaPodcastHilean as
-select Artista.IzenArtistikoa as Musikaria, Audio.Izena as Abestia, sum(Entzunaldiak) as Entzunaldiak, Hilea
-from Artista join Album using(IdArtista) 
-join Abestia using(IdAlbum) 
-join EstadistikakHilean using (IdAudio) 
-join Audio using(IdAudio)
-where month(Hilea) = month(now()) and Audio.Mota = "podcast"
-group by Artista.IzenArtistikoa, Audio.Izena, Hilea 
-order by Entzunaldiak Desc;
+select Artista.IzenArtistikoa as Podcasterra, Audio.Izena as Izena, sum(Entzunaldiak) as Entzunaldiak
+from Artista join Podcaster using (IdArtista)
+join  Podcast using (IdArtista)
+join Audio using (IdAudio)
+join EstadistikakHilean using(IdAudio)
+where month(Hilea) = month(now())
+group by Podcasterra, Izena, EstadistikakHilean.Entzunaldiak;
 
 drop view if exists EstadistikaPodcastUrtean;
 create view EstadistikaPodcastUrtean as
-select Artista.IzenArtistikoa as Musikaria, Audio.Izena as Abestia, sum(Entzunaldiak) as Entzunaldiak, Urtea
-from Artista join Album using(IdArtista) 
-join Abestia using(IdAlbum) 
-join EstadistikakHilean using (IdAudio) 
-join Audio using(IdAudio)
-where year(Urtea) = year(now()) and Audio.Mota = "podcast"
-group by Artista.IzenArtistikoa, Audio.Izena, Urtea 
-order by Entzunaldiak Desc;
+select Artista.IzenArtistikoa as Podcasterra, Audio.Izena as Izena, sum(Entzunaldiak) as Entzunaldiak
+from Artista join Podcaster using (IdArtista)
+join  Podcast using (IdArtista)
+join Audio using (IdAudio)
+join EstadistikakUrtean using(IdAudio)
+where year(Urtea) = year(now())
+group by Podcasterra, Izena, EstadistikakUrtean.Entzunaldiak;
 
 
 drop view if exists EstatistikakAurkestuMusikariaTotala;
