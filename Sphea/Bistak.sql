@@ -93,6 +93,39 @@ where Urtea = year(now())
 group by Audio.Izena
 order by Entzunaldiak Desc;
 
+drop view if exists EstadistikaAlbumakEgunean;
+create view EstadistikaAlbumakEgunean as
+select Artista.IzenArtistikoa as Artista, Izenburua as Album, sum(Entzunaldiak) as Entzunaldiak
+from Artista join Album using(IdArtista) 
+join Abestia using(IdAlbum)
+join EstadistikakEgunean using (IdAudio)
+join Audio using(IdAudio)
+where day(Eguna) = day(now())
+group by Izenburua
+order by Entzunaldiak Desc;
+
+drop view if exists EstadistikaAlbumaklHilean;
+create view EstadistikaAlbumaklHilean as
+select Artista.IzenArtistikoa as Artista, Izenburua as Album, sum(Entzunaldiak) as Entzunaldiak
+from Artista join Album using(IdArtista) 
+join Abestia using(IdAlbum)
+join EstadistikakHilean using (IdAudio)
+join Audio using(IdAudio)
+where month(Hilea) = month(now()) and year(Hilea) = year(Hilea)
+group by Izenburua
+order by Entzunaldiak Desc;
+
+drop view if exists EstadistikaAlbumakUrtean;
+create view EstadistikaAlbumakUrtean as
+select Artista.IzenArtistikoa as Artista, Izenburua as Album, sum(Entzunaldiak) as Entzunaldiak
+from Artista join Album using(IdArtista) 
+join Abestia using(IdAlbum)
+join EstadistikakUrtean using (IdAudio)
+join Audio using(IdAudio)
+where EstadistikakUrtean.Urtea = year(now())
+group by Izenburua
+order by Entzunaldiak Desc;
+
 drop view if exists EstatistikakAurkestuMusikariaTotala;
 create view EstatistikakAurkestuMusikariaTotala as
 select ar.IzenArtistikoa AS Izena, sum(er.Entzunaldiak) as Totala , ar.Irudia as Irudia from EstadistikaTotala er INNER JOIN Audio au on er.IdAudio = au.IdAudio
