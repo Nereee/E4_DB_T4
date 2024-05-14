@@ -95,7 +95,7 @@ order by Entzunaldiak Desc;
 
 drop view if exists EstadistikaAlbumakEgunean;
 create view EstadistikaAlbumakEgunean as
-select Artista.IzenArtistikoa as Artista, Izenburua as Album, sum(Entzunaldiak) as Entzunaldiak
+select Artista.IzenArtistikoa as Artista, Izenburua as Albuma, sum(Entzunaldiak) as Entzunaldiak
 from Artista join Album using(IdArtista) 
 join Abestia using(IdAlbum)
 join EstadistikakEgunean using (IdAudio)
@@ -106,7 +106,7 @@ order by Entzunaldiak Desc;
 
 drop view if exists EstadistikaAlbumaklHilean;
 create view EstadistikaAlbumaklHilean as
-select Artista.IzenArtistikoa as Artista, Izenburua as Album, sum(Entzunaldiak) as Entzunaldiak
+select Artista.IzenArtistikoa as Artista, Izenburua as Albuma, sum(Entzunaldiak) as Entzunaldiak
 from Artista join Album using(IdArtista) 
 join Abestia using(IdAlbum)
 join EstadistikakHilean using (IdAudio)
@@ -117,7 +117,7 @@ order by Entzunaldiak Desc;
 
 drop view if exists EstadistikaAlbumakUrtean;
 create view EstadistikaAlbumakUrtean as
-select Artista.IzenArtistikoa as Artista, Izenburua as Album, sum(Entzunaldiak) as Entzunaldiak
+select Artista.IzenArtistikoa as Artista, Izenburua as Albuma, sum(Entzunaldiak) as Entzunaldiak
 from Artista join Album using(IdArtista) 
 join Abestia using(IdAlbum)
 join EstadistikakUrtean using (IdAudio)
