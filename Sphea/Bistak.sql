@@ -44,25 +44,25 @@ where day(Eguna) = day(now()) and Audio.Mota = "podcast"
 group by Artista.IzenArtistikoa, Audio.Izena, Eguna
 order by Entzunaldiak Desc;
 
-drop view if exists EstadistikaAbestiaHilean;
-create view EstadistikaAbestiaHilean as
+drop view if exists EstadistikaPodcastHilean;
+create view EstadistikaPodcastHilean as
 select Artista.IzenArtistikoa as Musikaria, Audio.Izena as Abestia, sum(Entzunaldiak) as Entzunaldiak, Hilea
 from Artista join Album using(IdArtista) 
 join Abestia using(IdAlbum) 
 join EstadistikakHilean using (IdAudio) 
 join Audio using(IdAudio)
-where month(Hilea) = month(now()) and Audio.Mota = "abestia"
+where month(Hilea) = month(now()) and Audio.Mota = "podcast"
 group by Artista.IzenArtistikoa, Audio.Izena, Hilea 
 order by Entzunaldiak Desc;
 
-drop view if exists EstadistikaAbestiaUrtean;
-create view EstadistikaAbestiaUrtean as
+drop view if exists EstadistikaPodcastUrtean;
+create view EstadistikaPodcastUrtean as
 select Artista.IzenArtistikoa as Musikaria, Audio.Izena as Abestia, sum(Entzunaldiak) as Entzunaldiak, Urtea
 from Artista join Album using(IdArtista) 
 join Abestia using(IdAlbum) 
 join EstadistikakHilean using (IdAudio) 
 join Audio using(IdAudio)
-where year(Urtea) = year(now()) and Audio.Mota = "abestia"
+where year(Urtea) = year(now()) and Audio.Mota = "podcast"
 group by Artista.IzenArtistikoa, Audio.Izena, Urtea 
 order by Entzunaldiak Desc;
 
