@@ -161,3 +161,19 @@ BEGIN
     
 END; 
 //	
+
+drop procedure if exists AldatuMusikaria;
+DELIMITER //
+CREATE PROCEDURE AldatuMusikaria(id int,izena varchar(30),irudia text,deskripzioa varchar(100),ezaugarria varchar(20)) 
+BEGIN
+	
+    Update Artista set IzenArtistikoa = izena,  
+    Irudia = from_base64(irudia),  
+    Deskripzioa = deskripzioa
+    WHERE IdArtista = id;
+    
+    Update  Musikaria set 
+    Ezaugarria = ezaugarria
+    WHERE IdArtista = id;
+END;
+//
