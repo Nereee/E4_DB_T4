@@ -18,7 +18,7 @@ from Artista join Album using(IdArtista)
 join Abestia using(IdAlbum) 
 join EstadistikakHilean using (IdAudio) 
 join Audio using(IdAudio)
-where month(Hilea) = month(now())
+where month(Hilea) = month(now()) and year(Hilea) = year(Hilea)
 group by Artista.IzenArtistikoa, Audio.Izena, Hilea 
 order by Entzunaldiak Desc;
 
@@ -29,7 +29,7 @@ from Artista join Album using(IdArtista)
 join Abestia using(IdAlbum) 
 join EstadistikakUrtean using (IdAudio) 
 join Audio using(IdAudio)
-where year(EstadistikakUrtean.Urtea) = year(now())
+where EstadistikakUrtean.Urtea = year(now())
 group by Artista.IzenArtistikoa, Audio.Izena, EstadistikakUrtean.Urtea 
 order by Entzunaldiak Desc;
 
@@ -40,7 +40,7 @@ from Artista join Podcaster using (IdArtista)
 join  Podcast using (IdArtista)
 join Audio using (IdAudio)
 join EstadistikakEgunean using(IdAudio)
-where day(Eguna) = day(now())
+where date(Eguna) = date(now())
 group by Podcasterra, Izena, EstadistikakEgunean.Entzunaldiak
 order by EstadistikakEgunean.Entzunaldiak Desc;
 
@@ -51,7 +51,7 @@ from Artista join Podcaster using (IdArtista)
 join  Podcast using (IdArtista)
 join Audio using (IdAudio)
 join EstadistikakHilean using(IdAudio)
-where month(Hilea) = month(now())
+where month(Hilea) = month(now()) and year(Hilea) = year(Hilea)
 group by Podcasterra, Izena, EstadistikakHilean.Entzunaldiak
 order by EstadistikakHilean.Entzunaldiak Desc;
 
@@ -62,7 +62,7 @@ from Artista join Podcaster using (IdArtista)
 join  Podcast using (IdArtista)
 join Audio using (IdAudio)
 join EstadistikakUrtean using(IdAudio)
-where year(Urtea) = year(now())
+where Urtea = year(now())
 group by Podcasterra, Izena, EstadistikakUrtean.Entzunaldiak
 order by EstadistikakUrtean.Entzunaldiak Desc;
 
@@ -80,7 +80,7 @@ create view EntzundaHilean as
 select Audio.Izena as Izena, sum(Entzunaldiak) as Entzunaldiak
 from EstadistikakHilean
 join Audio using(IdAudio)
-where month(Hilea) = month(now())
+where month(Hilea) = month(now()) and year(Hilea) = year(Hilea)
 group by Audio.Izena
 order by Entzunaldiak Desc;
 
@@ -89,7 +89,7 @@ create view EntzundaUrtean as
 select Audio.Izena as Izena, sum(Entzunaldiak) as Entzunaldiak
 from EstadistikakUrtean
 join Audio using(IdAudio)
-where year(Urtea) = year(now())
+where Urtea = year(now())
 group by Audio.Izena
 order by Entzunaldiak Desc;
 
