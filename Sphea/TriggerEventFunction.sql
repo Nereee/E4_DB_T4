@@ -162,9 +162,23 @@ BEGIN
 END; 
 //	
 
+drop procedure if exists InsertatuMusikaria;
+DELIMITER //
+CREATE PROCEDURE InsertatuMusikaria(izena varchar(30),irudia longtext,deskripzioa varchar(100),ezaugarria varchar(20)) 
+BEGIN
+	declare lastId varchar(30);
+    Insert into Artista (IzenArtistikoa,Irudia,Deskripzioa) values(izena,from_base64(irudia),deskripzioa);
+    select IdArtista into lastId from Artista where IzenArtistikoa = izena;
+    Insert into Musikaria values (lastId,ezaugarria);
+END;
+//
+
+
+
+
 drop procedure if exists AldatuMusikaria;
 DELIMITER //
-CREATE PROCEDURE AldatuMusikaria(id int,izena varchar(30),irudia text,deskripzioa varchar(100),ezaugarria varchar(20)) 
+CREATE PROCEDURE AldatuMusikaria(id int,izena varchar(30),irudia longtext,deskripzioa varchar(100),ezaugarria varchar(20)) 
 BEGIN
 	
     Update Artista set IzenArtistikoa = izena,  
