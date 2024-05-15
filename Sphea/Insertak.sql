@@ -16,31 +16,35 @@ INSERT INTO Hizkuntza (IdHizkuntza, Deskribapena) VALUES ('AR', 'Árabe');
 
 /*1*/
 INSERT INTO Bezeroa (Izena, Abizena, Erabiltzailea, Pasahitza, JaiotzeData, Mota, IdHizkuntza)
-VALUES ('Ekaitz', 'Blanca', 'eka', 'bla', '1984-02-22', 'free', 'ES');
+VALUES ('probak', 'probak', 'probak', 'probak', '2000-01-01', 'free', 'ES');
 
 /*2*/
 INSERT INTO Bezeroa (Izena, Abizena, Erabiltzailea, Pasahitza, JaiotzeData, Mota, IdHizkuntza)
-VALUES ('Aitzol', 'Sagardui', 'ait', 'sag', '1964-01-12', 'premium', 'ES');
+VALUES ('Ekaitz', 'Blanca', 'eka', 'bla', '1984-02-22', 'free', 'ES');
 
 /*3*/
 INSERT INTO Bezeroa (Izena, Abizena, Erabiltzailea, Pasahitza, JaiotzeData, Mota, IdHizkuntza)
-VALUES ('Hector', 'Martinez', 'hec', 'mar', '1934-06-09', 'free', 'EN');
+VALUES ('Aitzol', 'Sagardui', 'ait', 'sag', '1964-01-12', 'premium', 'ES');
 
 /*4*/
 INSERT INTO Bezeroa (Izena, Abizena, Erabiltzailea, Pasahitza, JaiotzeData, Mota, IdHizkuntza)
-VALUES ('a', 'a', 'a', 'a', '1905-12-04', 'free', 'ES');
+VALUES ('Hector', 'Martinez', 'hec', 'mar', '1934-06-09', 'free', 'EN');
 
 /*5*/
+INSERT INTO Bezeroa (Izena, Abizena, Erabiltzailea, Pasahitza, JaiotzeData, Mota, IdHizkuntza)
+VALUES ('a', 'a', 'a', 'a', '1905-12-04', 'free', 'ES');
+
+/*6*/
 INSERT INTO Bezeroa (Izena, Abizena, Erabiltzailea, Pasahitza, JaiotzeData, Mota, IdHizkuntza)
 VALUES ('p', 'p', 'p', 'p', '1905-12-04', 'premium', 'ES');
 
 
 /*----------Premium-----------*/
 INSERT INTO Premium (IdBezeroa, IraungitzeData)
-VALUES (2, '2026-01-01');
+VALUES (3, '2026-01-01');
 
 INSERT INTO Premium (IdBezeroa, IraungitzeData)
-VALUES (5, '2026-01-01');
+VALUES (6, '2026-01-01');
 
 /*---------Artistak---------*/
 
@@ -406,32 +410,14 @@ Insert into EstadistikaTotala values(34,0);
 
 /*----------Playlist------------*/
 INSERT INTO Playlist (Izenburua, SorreraData, IdBezeroa)
-VALUES ('Lo egiteko', now(), 1);
-
-INSERT INTO Playlist (Izenburua, SorreraData, IdBezeroa)
-VALUES ('Berriak', now(), 2);
-
-INSERT INTO Playlist (Izenburua, SorreraData, IdBezeroa)
-VALUES ('Nireak', now(), 3);
-
-INSERT INTO Playlist (Izenburua, SorreraData, IdBezeroa)
-VALUES ('Gogoratu', now(), 4);
+VALUES ('PlaylistProba', now(), 1);
 
 /*---------PlayListAbestiak----------*/
 INSERT INTO PlaylistAbestiak (IdList, IdAudio, PData)
-VALUES (3, 1, now());
+VALUES (1, 1, now());
 
 /*---------Gustokoak-----------*/
 INSERT INTO Gustokoak (IdBezeroa, IdAudio)
-values(4,1);
-
-INSERT INTO Gustokoak (IdBezeroa, IdAudio)
-values(4,6);
-
-INSERT INTO Gustokoak (IdBezeroa, IdAudio)
-values(4,7);
-
-INSERT INTO Gustokoak (IdBezeroa, IdAudio)
-values(4,15)
+values(1,1);
 
 
