@@ -227,13 +227,10 @@ END;
 //
 
 drop procedure InsertatuAbestia;
-Delimiter //
-Create procedure InsertatuAbestia(izena varchar(30),iraupena time,irudia longtext,idAlbum int)
-begin 
-		declare newId int;
-		Insert into Audio (Izena,Iraupena,Irudia) VALUES(izena,iraupena,from_base64(irudia));
-        Select IdAudio into newId from Audio where Izena = izena limit 1;
-        Insert into Abestia VALUES(newId,idAlbum);
-        Insert into EstadistikaTotala values(newId,0);
+	Delimiter //
+	Create procedure InsertatuAbestia(id int,idAlbum int)
+	begin 
+        Insert into Abestia VALUES(id,idAlbum);
+        Insert into EstadistikaTotala values(id,0);
     end;
    //
