@@ -232,7 +232,7 @@ Create procedure InsertatuAbestia(izena varchar(30),iraupena time,irudia longtex
 begin 
 		declare newId int;
 		Insert into Audio (Izena,Iraupena,Irudia) VALUES(izena,iraupena,from_base64(irudia));
-        Select IdAudio into newId from Audio where izena = izena;
+        Select IdAudio into newId from Audio where Izena = izena limit 1;
         Insert into Abestia VALUES(newId,idAlbum);
         Insert into EstadistikaTotala values(newId,0);
     end;
