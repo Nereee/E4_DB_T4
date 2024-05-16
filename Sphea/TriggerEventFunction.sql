@@ -162,8 +162,9 @@ BEGIN
 END; 
 //	
 
-drop procedure if exists InsertatuMusikaria;
+
 DELIMITER //
+drop procedure if exists InsertatuMusikaria //
 CREATE PROCEDURE InsertatuMusikaria(izena varchar(30),irudia longtext,deskripzioa varchar(100),ezaugarria varchar(20)) 
 BEGIN
 	declare lastId varchar(30);
@@ -176,8 +177,9 @@ END;
 
 
 
-drop procedure if exists AldatuMusikaria;
+
 DELIMITER //
+drop procedure if exists AldatuMusikaria //
 CREATE PROCEDURE AldatuMusikaria(id int,izena varchar(30),irudia longtext,deskripzioa varchar(100),ezaugarria varchar(20)) 
 BEGIN
 	
