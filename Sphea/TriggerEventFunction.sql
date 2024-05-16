@@ -225,3 +225,15 @@ DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
     Insert into Album (Izenburua, Urtea, Generoa, Irudia, IdArtista) values(izena,urtea, generoa, from_base64(irudia),idMusikaria);
 END;
 //
+
+drop procedure InsertatuAbestia;
+Delimiter //
+Create procedure InsertatuAbestia(izena varchar(30),iraupena time,irudia longtext,idAlbum int)
+begin 
+		declare newId int;
+		Insert into Audio (Izena,Iraupena,Irudia) VALUES(izena,iraupena,from_base64(irudia));
+        Select IdAudio into newId from Audio where izena = izena;
+        Insert into Abestia VALUES(newId,idAlbum);
+        Insert into EstadistikaTotala values(newId,0);
+    end;
+   //
