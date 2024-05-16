@@ -5,7 +5,11 @@ DROP TRIGGER IF EXISTS insert_ErregistroData //
 CREATE TRIGGER insert_ErregistroData
 BEFORE INSERT ON Bezeroa
 FOR EACH ROW
+BEGIN
+    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION 
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Erregistro data ezartzerakoan errorea';
     set new.ErregistroData = CURDATE();
+    END;
 //
 
 DELIMITER //
@@ -15,6 +19,8 @@ CREATE TRIGGER EstadistikaTotalaBeteInsert
 BEFORE INSERT ON EstadistikakEgunean
 FOR EACH ROW
 BEGIN
+    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION 
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Errorea Estadistika totalean insterta egitean';
     UPDATE EstadistikaTotala
     SET Entzunaldiak =  Entzunaldiak + 1
     WHERE IdAudio = NEW.IdAudio; 
@@ -28,6 +34,8 @@ CREATE TRIGGER EstadistikaTotalaBeteUpdate
 BEFORE UPDATE ON EstadistikakEgunean
 FOR EACH ROW
 BEGIN
+    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION 
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Errorea Estadistika totalak eguneratzean';
     UPDATE EstadistikaTotala
     SET Entzunaldiak =  Entzunaldiak + 1
     WHERE IdAudio = NEW.IdAudio; 
@@ -40,6 +48,8 @@ drop procedure if exists InsertatuMusikaria //
 CREATE PROCEDURE InsertatuMusikaria(izena varchar(30),irudia text,deskripzioa varchar(100),ezaugarria varchar(20)) 
 BEGIN
 	declare lastId varchar(30);
+    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION 
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Errorea musikaria insertatzean';
     Insert into Artista (IzenArtistikoa,Irudia,Deskripzioa) values(izena,from_base64(irudia),deskripzioa);
     select IdArtista into lastId from Artista where IzenArtistikoa = izena;
     Insert into Musikaria values (lastId,ezaugarria);
@@ -55,6 +65,8 @@ CREATE TRIGGER EstadistikaTotalaBeteUpdate
 BEFORE UPDATE ON EstadistikakEgunean
 FOR EACH ROW
 BEGIN
+DECLARE CONTINUE HANDLER FOR SQLEXCEPTION 
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Errorea Estadistika totala eguneratzean';
     UPDATE EstadistikaTotala
     SET Entzunaldiak =  Entzunaldiak + 1
     WHERE IdAudio = NEW.IdAudio; 
@@ -62,13 +74,14 @@ END;
 //
 
 DELIMITER //
-DROP FUNCTION IF EXISTS BadagoGaurIdAudio;
+DROP FUNCTION IF EXISTS BadagoGaurIdAudio //
 CREATE FUNCTION BadagoGaurIdAudio(IdAudioa int)
 RETURNS BOOLEAN
 READS sql data
 BEGIN
     DECLARE rowExist int;
-    
+    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION 
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Errorea gaurkorako aurkitzean audioa';
     SELECT IdAudio into rowExist FROM EstadistikakEgunean
     WHERE IdAudio = IdAudioa and Eguna = current_date();
 
@@ -86,6 +99,8 @@ CREATE TRIGGER EstadistikakEguneanBete_Insert
 BEFORE INSERT ON Erreprodukzioak
 FOR EACH ROW
 BEGIN
+    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION 
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Errorra inserta egitean EstadistikakEgunean';
 	IF(BadagoGaurIdAudio(NEW.IdAudio)) then
 	UPDATE EstadistikakEgunean
     SET Entzunaldiak =  Entzunaldiak + 1
@@ -97,7 +112,7 @@ END;
 //
 
 delimiter //
-DROP EVENT if exists EstadistikaHilean;
+DROP EVENT if exists EstadistikaHilean //
 CREATE EVENT EstadistikaHilean
 ON SCHEDULE EVERY 1 Month
 STARTS '2024-06-01 00:00:00'
@@ -115,6 +130,8 @@ BEGIN
     DECLARE CONTINUE HANDLER FOR NOT FOUND
     SET amaitu = 1;
     
+        DECLARE CONTINUE HANDLER FOR SQLEXCEPTION 
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Errorea hileko estadistikak kargatzean';
 	open estadistikaZerrendaHilean;
 	
     fetch estadistikaZerrendaHilean into id,entzun;
@@ -130,7 +147,7 @@ END;
 //
 
 delimiter //
-DROP EVENT if exists EstadistikaUrtean;
+DROP EVENT if exists EstadistikaUrtean //
 CREATE EVENT EstadistikaUrtean
 ON SCHEDULE EVERY 1 Year
 STARTS '2025-01-01 00:00:00'
@@ -140,6 +157,7 @@ BEGIN
     DECLARE entzun int;
     DECLARE amaitu boolean default 0;
     
+
     DECLARE estadistikaZerrenda cursor for 
     SELECT  IdAudio,sum(Entzunaldiak)
     FROM EstadistikakHilean
@@ -147,7 +165,8 @@ BEGIN
     GROUP BY IdAudio;
     DECLARE CONTINUE HANDLER FOR NOT FOUND
     SET amaitu = 1;
-    
+        DECLARE CONTINUE HANDLER FOR SQLEXCEPTION 
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Errorea urteko estadistikak kargatzean';
 	open estadistikaZerrenda;
 	
     fetch estadistikaZerrenda into id,entzun;
@@ -168,6 +187,8 @@ drop procedure if exists InsertatuMusikaria //
 CREATE PROCEDURE InsertatuMusikaria(izena varchar(30),irudia longtext,deskripzioa varchar(100),ezaugarria varchar(20)) 
 BEGIN
 	declare lastId varchar(30);
+    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION 
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Errorea musikaria insertatzerakoan';
     Insert into Artista (IzenArtistikoa,Irudia,Deskripzioa) values(izena,from_base64(irudia),deskripzioa);
     select IdArtista into lastId from Artista where IzenArtistikoa = izena;
     Insert into Musikaria values (lastId,ezaugarria);
@@ -182,7 +203,8 @@ DELIMITER //
 drop procedure if exists AldatuMusikaria //
 CREATE PROCEDURE AldatuMusikaria(id int,izena varchar(30),irudia longtext,deskripzioa varchar(100),ezaugarria varchar(20)) 
 BEGIN
-	
+        DECLARE CONTINUE HANDLER FOR SQLEXCEPTION 
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Errorea musikaria aldatzerakoan';
     Update Artista set IzenArtistikoa = izena,  
     Irudia = from_base64(irudia),  
     Deskripzioa = deskripzioa
@@ -198,7 +220,8 @@ DELIMITER //
 drop procedure if exists InsertatuAlbum //
 CREATE PROCEDURE InsertatuAlbum(izena varchar(30), irudia longtext, generoa varchar(30), urtea date, idMusikaria int) 
 BEGIN
-	declare lastId varchar(30);
+DECLARE CONTINUE HANDLER FOR SQLEXCEPTION 
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Errorea albumera insertatzerakoan';
     Insert into Album (Izenburua, Urtea, Generoa, Irudia, IdArtista) values(izena,urtea, generoa, from_base64(irudia),idMusikaria);
 END;
 //
