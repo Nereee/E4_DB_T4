@@ -36,7 +36,7 @@ on delete cascade on update cascade
 
 create table Audio(
 IdAudio int primary key auto_increment,
-Izena varchar(50) not null,
+Izena varchar(50) not null unique,
 Iraupena time not null,
 Irudia longblob not null,
 Mota enum("abestia","podcast", "iragarkia") not null
