@@ -1,5 +1,6 @@
 use Sphea;
 
+/*Abestien Estadistikak erakutzi*/
 drop view if exists EstadistikaAbestiaEgunean;
 create view EstadistikaAbestiaEgunean as
 select Artista.IzenArtistikoa as Musikaria, Audio.Izena as Abestia, sum(Entzunaldiak) as Entzunaldiak, Eguna as Eguna
@@ -33,6 +34,7 @@ where EstadistikakUrtean.Urtea = year(now())
 group by Artista.IzenArtistikoa, Audio.Izena, EstadistikakUrtean.Urtea 
 order by Entzunaldiak Desc;
 
+/*Estadistikak Podcastekoak*/
 drop view if exists EstadistikaPodcastEgunean;
 create view EstadistikaPodcastEgunean as
 select Artista.IzenArtistikoa as Podcasterra, Audio.Izena as Izena, sum(Entzunaldiak) as Entzunaldiak
@@ -66,6 +68,7 @@ where Urtea = year(now())
 group by Podcasterra, Izena, EstadistikakUrtean.Entzunaldiak
 order by EstadistikakUrtean.Entzunaldiak Desc;
 
+/*Estadistikak Entzundakoak*/
 drop view if exists EntzundaEgunean;
 create view EntzundaEgunean as
 select Audio.Izena as Izena, sum(Entzunaldiak) as Entzunaldiak
@@ -93,6 +96,7 @@ where Urtea = year(now())
 group by Audio.Izena
 order by Entzunaldiak Desc;
 
+/*Estadistikak Albumekoak*/
 drop view if exists EstadistikaAlbumakEgunean;
 create view EstadistikaAlbumakEgunean as
 select Artista.IzenArtistikoa as Artista, Izenburua as Albuma, sum(Entzunaldiak) as Entzunaldiak
@@ -126,6 +130,7 @@ where EstadistikakUrtean.Urtea = year(now())
 group by Izenburua
 order by Entzunaldiak Desc;
 
+/*Zenbat aldiz entzun den musika bat*/
 drop view if exists EstatistikakAurkestuMusikariaTotala;
 create view EstatistikakAurkestuMusikariaTotala as
 select ar.IzenArtistikoa AS Izena, sum(er.Entzunaldiak) as Totala , ar.Irudia as Irudia from EstadistikaTotala er INNER JOIN Audio au on er.IdAudio = au.IdAudio
@@ -133,6 +138,7 @@ INNER JOIN Abestia ab on au.IdAudio = ab.IdAudio
 INNER JOIN Album al ON ab.IdAlbum = al.IdAlbum
 INNER JOIN Artista ar ON al.IdArtista = ar.IdArtista group by ar.IdArtista; 
 
+/*Zenbat aldiz entzun den podcast bat*/
 drop view if exists EstatistikakAurkestuPodcasterraTotala;
 create view EstatistikakAurkestuPodcasterraTotala as
 select ar.IzenArtistikoa as Izena, sum(er.Entzunaldiak) as Totala, ar.Irudia from  EstadistikaTotala er INNER JOIN Audio au on er.IdAudio = au.IdAudio

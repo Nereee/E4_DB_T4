@@ -193,3 +193,12 @@ BEGIN
     WHERE IdArtista = id;
 END;
 //
+
+DELIMITER //
+drop procedure if exists InsertatuAlbum //
+CREATE PROCEDURE InsertatuAlbum(izena varchar(30), irudia longtext, generoa varchar(30), urtea date, idMusikaria int) 
+BEGIN
+	declare lastId varchar(30);
+    Insert into Album (Izenburua, Urtea, Generoa, Irudia, IdArtista) values(izena,urtea, generoa, from_base64(irudia),idMusikaria);
+END;
+//
