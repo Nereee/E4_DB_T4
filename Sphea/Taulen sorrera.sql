@@ -7,7 +7,7 @@ create table Artista(
 IdArtista int primary key auto_increment,
 IzenArtistikoa varchar(30) not null unique,
 Irudia longblob,
-Deskripzioa varchar(500)
+Deskripzioa text
 );
 
 create table Musikaria (
