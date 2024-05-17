@@ -49,14 +49,3 @@ grant update on Sphea.Premium to DepartBuruRol;
 #DepartBuru
 create user "departBuru"@"%" identified by "1234";
 grant DepartBuruRol to "departBuru"@"%";
-
-
-
-
-
-
-
-
-
-
-#

@@ -7,7 +7,7 @@ create table Artista(
 IdArtista int primary key auto_increment,
 IzenArtistikoa varchar(30) not null unique,
 Irudia longblob,
-Deskripzioa varchar(500)
+Deskripzioa text
 );
 
 create table Musikaria (
@@ -28,7 +28,7 @@ IdAlbum int primary key auto_increment,
 Izenburua varchar(50) unique not null,
 Urtea date not null,
 Generoa varchar(20) not null,
-Irudia longblob /*not null*/,
+Irudia longblob not null,
 IdArtista int not null,
 foreign key (IdArtista) references Musikaria(IdArtista)
 on delete cascade on update cascade
@@ -36,10 +36,10 @@ on delete cascade on update cascade
 
 create table Audio(
 IdAudio int primary key auto_increment,
-Izena varchar(50) not null,
+Izena varchar(50) not null unique,
 Iraupena time not null,
-Irudia longblob /*not null*/,
-Mota enum("abestia","podcast") not null
+Irudia longblob not null,
+Mota enum("abestia","podcast", "iragarkia") not null
 );
 
 create table Podcast(
@@ -63,25 +63,28 @@ on delete cascade on update cascade
 
 
 create table EstadistikakEgunean(
-IdAudio int primary key auto_increment,
+IdAudio int auto_increment,
 Eguna date,
 Entzunaldiak int,
+primary key(IdAudio, Eguna),
 foreign key (IdAudio) references Audio(IdAudio)
 on delete cascade on update cascade
 );
 
 create table EstadistikakHilean(
-IdAudio int primary key auto_increment,
+IdAudio int auto_increment,
 Hilea date,
 Entzunaldiak int,
+primary key(IdAudio, Hilea),
 foreign key (IdAudio) references Audio(IdAudio)
 on delete cascade on update cascade
 );
 
 create table EstadistikakUrtean(
-IdAudio int primary key auto_increment,
+IdAudio int auto_increment,
 Urtea year,
 Entzunaldiak int,
+primary key(IdAudio, Urtea),
 foreign key (IdAudio) references Audio(IdAudio)
 on delete cascade on update cascade
 );
